@@ -108,4 +108,3 @@ function generateUserMessage(){
     
 
 } generateUserMessage()
-clickFnc()
