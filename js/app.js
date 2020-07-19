@@ -1,48 +1,8 @@
 'use strict'
-
-/*<section id="votes">
-<strong id "resultsWordDisplay">Results:</strong>
-<li id "list "><p id 'imageWordDisplay'>Image 1: </p><em></em><p id ' votesWordDisplay'> Votes</p></li> 
-</section>
-*/
 var votes = document.getElementById('votes')
 var resultsWordDisplay = document.createElement('strong')
 votes.appendChild(resultsWordDisplay)
 resultsWordDisplay.textContent = 'Results: '
-
-/*for (let index = 1; index <= collections.length; index++) {
-    var list = document.createElement('li')
-votes.appendChild(list)
-list.textContent ='Image ' + index +': '+ collections.numberOfClicks + 
-    console.log(collections.numberOfClicks)
-}
-*/
-/*var list = document.createElement('li')
-votes.appendChild(list)
-
-var imageWordDisplay = document.createElement('p')
-list.appendChild(imageWordDisplay)
-imageWordDisplay.textContent = 'Image 1: '
-
-var clicksNoDisplay = document.createElement('em')
-list.appendChild(clicksNoDisplay)
-clicksNoDisplay.textContent = '5'
-
-var votesWordDisplay = document.createElement('p')
-list.appendChild(votesWordDisplay)
-votesWordDisplay.textContent = " Votes"
-
-//End of Results section Rendering*/
-
-
-
-
-
-
-
-
-
-
 
 //constructor:
 var collections = []
@@ -109,3 +69,43 @@ collections[rightIndex].numberOfTimesShown += 1;
  rightImg.setAttribute('src',rightImgsrc)
 }
 randomImg()
+var imgSection = document.getElementById('imgSec')
+imgSection.addEventListener('click', clickFnc);
+var totalClicks = 0
+function clickFnc(){
+    if (totalClicks < 25 ){
+
+        var clickedElement = event.target;
+        var clickedElementId = clickedElement.id;
+
+      if(clickedElementId === 'leftImg' || clickedElementId === 'midImg' || clickedElementId === 'rightImg' ){
+            totalClicks +=1;
+
+            if(clickedElementId === 'leftImg'){
+                collections[leftIndex].numberOfClicks +=1;
+            }
+            if(clickedElementId === 'midtImg'){
+                collections[midIndex].numberOfClicks +=1;
+            }
+
+            if(clickedElementId === 'leftImg'){
+                collections[rightIndex].numberOfClicks +=1;
+            }
+
+            randomImg();
+         } else {
+       generateUserMessage();
+        imgSection.removeEventListener('click', clickFnc);
+    }
+}}
+
+function generateUserMessage(){   
+    for (let index = 1; index <= collections.length; index++) {
+        var list = document.createElement('li')
+    votes.appendChild(list)
+    //list.textContent = collections[index].name + ' Image Appeared: ' + collections[index].numberOfTimesShown +' & and got '+ numberOfClicks + ' clicks'  
+    } 
+    
+
+} generateUserMessage()
+clickFnc()
