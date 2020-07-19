@@ -1,1 +1,4 @@
 # BusMall
+The main idea for this lab is that we have a startup called BusMall, whose product is similar to the SkyMall catalog found in the seatback pockets on airplanes: a catalog of assorted high-markup products provided to a captive audience seeking a mental escape from the drudgery of travel. The difference with BusMall is that instead of their catalog being placed in airplanes, they are placed on local busses while commuting through traffic.
+In order to decrease the expenses of printing and since BusMall is a lean startup, BusMall wants to feature only the items in its catalog that are the most likely to sell.
+so in this lab, a market analysis on proposed products will be done to test their potential customer interest… before actually putting them into the catalog and getting the manufacturing wheels in motion.
