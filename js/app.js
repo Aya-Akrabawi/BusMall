@@ -69,8 +69,11 @@ collections[rightIndex].numberOfTimesShown += 1;
  rightImg.setAttribute('src',rightImgsrc)
 }
 randomImg()
+
 var imgSection = document.getElementById('imgSec')
 imgSection.addEventListener('click', clickFnc);
+
+
 var totalClicks = 0
 function clickFnc(){
     if (totalClicks < 25 ){
@@ -90,6 +93,7 @@ function clickFnc(){
 
             if(clickedElementId === 'leftImg'){
                 collections[rightIndex].numberOfClicks +=1;
+                console.log(                collections[rightIndex].numberOfClicks +=1)
             }
 
             randomImg();
@@ -103,7 +107,8 @@ function generateUserMessage(){
     for (let index = 1; index <= collections.length; index++) {
         var list = document.createElement('li')
     votes.appendChild(list)
-    //list.textContent = collections[index].name + ' Image Appeared: ' + collections[index].numberOfTimesShown +' & and got '+ numberOfClicks + ' clicks'  
+
+    list.textContent = collections[index].name + ' had ' + collections[index].numberOfClicks  + ' votes and was shown ' +  collections[index].numberOfTimesShown + ' times ' 
     } 
     
 
