@@ -85,7 +85,7 @@ function finalMassege() {
         var list = document.createElement('li')
         votes.appendChild(list)
 
-        list.textContent = collections[index].name + ' had ' + collections[index].numberOfClicks + ' votes and was shown ' + collections[index].viewed + ' times '
+        list.textContent = collections[index].name + ' had ' + collections[index].clicks + ' votes and was shown ' + collections[index].viewed + ' times '
     }
 
 }
