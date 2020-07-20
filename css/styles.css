@@ -17,10 +17,11 @@ aside {
     width: 30%;
     padding-left: 15px;
     margin: 15px;
+    margin-top: 0px;
     float: left;
-    font-style: italic;
     background-color: lightgray;
-    height: 400px;
+    height: auto;
+    line-height: 25pt;
   }
  tr {
      border: 5px solid black;
@@ -37,3 +38,4 @@ aside {
      width: 200px;
      height: 250px;
  }
+ 
