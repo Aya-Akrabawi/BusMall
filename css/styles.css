@@ -10,6 +10,8 @@ nav {
 }
 h1 {
     display: inline;
+    position: absolute;
+    margin-left: 10px;
 }
 
 
@@ -30,9 +32,9 @@ aside {
  span {
      font-family: monospace;
  }
- #logoImg {
-     width: 5px;
-     height: 5px;
+ #logImg {
+     width: 50px;
+     height: 50px;
  }
  img {
      width: 200px;
