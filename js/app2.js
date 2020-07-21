@@ -14,6 +14,8 @@ var midindex;
 var leftClicksArray = []
 var midClicksArray = []
 var rightClicksArray = []
+var pushedClicks 
+var pushedViews 
 
 
 var productsName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
@@ -127,16 +129,12 @@ function clicksNumber() {
             collections[rightindex].clicks += 1;
         }
         randomImageFunc();
-        var pushedClicks = []
-for (let index = 0; index < collections.length; index++) {
-    
-     pushedClicks.push(collections[index].clicks) 
-     console.log(pushedClicks)
-
-}
+       
     }
     else {
         finalMassege();
+        clicksAndViewsForChartsFunc();
+        chartFunc();
         imageSec.removeEventListener('click', clicksNumber);
     }
 }
@@ -151,10 +149,22 @@ function finalMassege() {
     }
 
 }
+
+
+function clicksAndViewsForChartsFunc (){
+    pushedClicks = []
+         pushedViews = []
+    for (let index = 0; index < collections.length; index++) {
+     pushedClicks.push(collections[index].clicks)
+     pushedViews.push(collections[index].viewed) 
+     console.log(pushedClicks)
+
+}}
+
 function chartFunc() {
 
 
-    var ctx = document.getElementById('myChart');
+    var ctx = document.getElementById('myChart').getContext('2d')
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -163,6 +173,51 @@ function chartFunc() {
                 label: '# of clicks for each product',
                  data: pushedClicks,
                 backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }, 
+            {
+                label: '# of views for each product',
+                 data: pushedViews,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
@@ -192,6 +247,6 @@ function chartFunc() {
         }
     });
 }
-//chartFunc()
+
 //here
 console.table(collections)
