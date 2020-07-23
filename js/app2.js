@@ -14,6 +14,8 @@ var midindex;
 var leftClicksArray = []
 var midClicksArray = []
 var rightClicksArray = []
+var pushedClicks 
+var pushedViews 
 
 
 var productsName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
@@ -92,10 +94,10 @@ for (let index = 1; index < rightClicksArray.length; index++) {
    check.push(check8)
    check.push(check9)
 
-   ////console.log(check)
+   //console.log(check)
 }
 if (check != 0) {
-    //console.log('great coding')
+    console.log('great coding')
 }
 */
 
@@ -127,17 +129,12 @@ function clicksNumber() {
             collections[rightindex].clicks += 1;
         }
         randomImageFunc();
-        var pushedClicks = []
-for (let index = 0; index < collections.length; index++) {
-    
-     pushedClicks.push(collections[index].clicks) 
-     //console.log(pushedClicks)
-
-}
+       
     }
     else {
         finalMassege();
-        storeProducts()
+        clicksAndViewsForChartsFunc();
+        chartFunc();
         imageSec.removeEventListener('click', clicksNumber);
     }
 }
@@ -154,93 +151,102 @@ function finalMassege() {
 }
 
 
-
-
-
-function storeProducts(){
-    //in order to save our array of objects into the localstorage we
-     //will need to formate our json object in json string
-    var jsonStringProducts = JSON.stringify(collections);
-    // creare a new property in our localstorage 
-    localStorage.setItem('savedProducts',jsonStringProducts);
-  }
-  console.log('before updatig');
-  console.table(collections);
-  parseLocalStorage();
-  console.log('after updating');
-  console.table(collections);
-  // this function is responsible for parsing the json string to json object 
-  function parseLocalStorage(){
-    var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
-    //console.log(previousProductsArr);
-    // this funtcion will update the newly created objects with the old literation values
-    update(previousProductsArr);
-  
-  }
-  console.table(collections)
-
-  function update(previousProductsArr){
+function clicksAndViewsForChartsFunc (){
+    pushedClicks = []
+         pushedViews = []
     for (let index = 0; index < collections.length; index++) {
-      collections[index].clicks = previousProductsArr[index].clicks;
-      
-      collections[index].viewed = previousProductsArr[index].viewed;
-      
-    }
-    //console.log(previousProductsArr)
-     // console.table(collections)
-  }
+     pushedClicks.push(collections[index].clicks)
+     pushedViews.push(collections[index].viewed) 
+     console.log(pushedClicks)
 
-  
+}}
+
+function chartFunc() {
 
 
+    var ctx = document.getElementById('myChart').getContext('2d')
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: productsName,
+            datasets: [{
+                label: '# of clicks for each product',
+                 data: pushedClicks,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }, 
+            {
+                label: '# of views for each product',
+                 data: pushedViews,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
 
-
-
-
-
-
-
-// function chartFunc() {
-
-
-//     var ctx = document.getElementById('myChart');
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: productsName,
-//             datasets: [{
-//                 label: '# of clicks for each product',
-//                  data: pushedClicks,
-//                 backgroundColor: [
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(153, 102, 255, 0.2)',
-//                     'rgba(255, 159, 64, 0.2)'
-//                 ],
-//                 borderColor: [
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(153, 102, 255, 1)',
-//                     'rgba(255, 159, 64, 1)'
-//                 ],
-//                 borderWidth: 1
-//             }]
-//         },
-//         options: {
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }]
-//             }
-//         }
-//     });
-// }
-// //chartFunc()
-// //here
-////console.table(collections)
+//here
+console.table(collections)
