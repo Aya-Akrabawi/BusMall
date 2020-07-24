@@ -27,7 +27,7 @@ function Product(name, path) {
 }
 for (let index = 0; index < productsName.length; index++) {
 
-    var productObject = new Product(productsName[index], `/images/${productsName[index]}.jpg`)
+    var productObject = new Product(productsName[index], `images/${productsName[index]}.jpg`)
     collections.push(productObject)
 }
 
