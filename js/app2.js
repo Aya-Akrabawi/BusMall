@@ -151,7 +151,7 @@ function finalMassege() {
 }
 
 
-function clicksAndViewsForChartsFunc (){
+/*function clicksAndViewsForChartsFunc (){
     pushedClicks = []
          pushedViews = []
     for (let index = 0; index < collections.length; index++) {
@@ -159,7 +159,7 @@ function clicksAndViewsForChartsFunc (){
      pushedViews.push(collections[index].viewed) 
      console.log(pushedClicks)
 
-}}
+}}*/
 
 function chartFunc() {
 
