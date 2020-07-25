@@ -14,6 +14,8 @@ var midindex;
 var leftClicksArray = []
 var midClicksArray = []
 var rightClicksArray = []
+var pushedClicks 
+var pushedViews 
 
 
 var productsName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
@@ -25,7 +27,7 @@ function Product(name, path) {
 }
 for (let index = 0; index < productsName.length; index++) {
 
-    var productObject = new Product(productsName[index], `/images/${productsName[index]}.jpg`)
+    var productObject = new Product(productsName[index], `images/${productsName[index]}.jpg`)
     collections.push(productObject)
 }
 
@@ -127,11 +129,12 @@ function clicksNumber() {
             collections[rightindex].clicks += 1;
         }
         randomImageFunc();
-      }
+       
+    }
     else {
         finalMassege();
         storeProducts()
-      clicksAndViewsForChartsFunc();
+        clicksAndViewsForChartsFunc();
         chartFunc();
         imageSec.removeEventListener('click', clicksNumber);
     }
@@ -148,10 +151,6 @@ function finalMassege() {
 
 }
 
-
-
-
-
 function storeProducts(){
     //in order to save our array of objects into the localstorage we
      //will need to formate our json object in json string
@@ -159,20 +158,20 @@ function storeProducts(){
     // creare a new property in our localstorage 
     localStorage.setItem('savedProducts',jsonStringProducts);
   }
-  console.log('before updatig');
-  console.table(collections);
+  //console.log('before updatig');
+  //console.table(collections);
   parseLocalStorage();
-  console.log('after updating');
-  console.table(collections);
+  //console.log('after updating');
+  //console.table(collections);
   // this function is responsible for parsing the json string to json object 
   function parseLocalStorage(){
     var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
-    //console.log(previousProductsArr);
+    ////console.log(previousProductsArr);
     // this funtcion will update the newly created objects with the old literation values
     update(previousProductsArr);
   
   }
-  console.table(collections)
+  //console.table(collections)
 
   function update(previousProductsArr){
     for (let index = 0; index < collections.length; index++) {
@@ -181,9 +180,10 @@ function storeProducts(){
       collections[index].viewed = previousProductsArr[index].viewed;
       
     }
-    //console.log(previousProductsArr)
-     // console.table(collections)
+    ////console.log(previousProductsArr)
+     //// console.table(collections)
   }
+
 
 function clicksAndViewsForChartsFunc (){
     pushedClicks = []
@@ -284,4 +284,3 @@ function chartFunc() {
 
 //here
 //console.table(collections)
-  
