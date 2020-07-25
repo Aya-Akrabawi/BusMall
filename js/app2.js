@@ -11,9 +11,7 @@ var O = 0;
 var rightindex;
 var leftindex;
 var midindex;
-var leftClicksArray = []
-var midClicksArray = []
-var rightClicksArray = []
+var prevClicksArray = []
 var pushedClicks 
 var pushedViews 
 
@@ -50,30 +48,41 @@ function randomImageFunc() {
     while (rightindex === leftindex || rightindex === midindex) {
         rightindex = randomNumber();
     }
-    leftClicksArray.push(leftindex)
-    midClicksArray.push(midindex)
-    rightClicksArray.push(rightindex)
+
+    prevClicksArray[0] = leftindex
+    prevClicksArray[1] = midindex
+    prevClicksArray[2] = rightindex
+   
 
 
-    for (let index = 1; index < rightClicksArray.length; index++) {
+/*    for (let index = 0; index < rightClicksArray.length; index++) {
         while (leftClicksArray[index] === midClicksArray[index - 1] || leftClicksArray[index] === rightClicksArray[index - 1] || leftClicksArray[index] === leftClicksArray[index - 1]) {
             leftClicksArray[index] = randomNumber();
+            console.log('left index = one of previouse array')
         }
 
-        for (let index = 1; index < rightClicksArray.length; index++) {
+        for (let index = 0; index < rightClicksArray.length; index++) {
             while (rightClicksArray[index] === leftClicksArray[index - 1] || rightClicksArray[index] === midClicksArray[index - 1] || rightClicksArray[index] === rightClicksArray[index - 1]) {
                 rightClicksArray[index] = randomNumber();
+                console.log('right index = one of previouse array')
             }
         }
-        for (let index = 1; index < rightClicksArray.length; index++) {
+        for (let index = 0; index < rightClicksArray.length; index++) {
             while (midClicksArray[index] === midClicksArray[index - 1] || midClicksArray[index] === rightClicksArray[index - 1] || midClicksArray[index] === leftClicksArray[index - 1]) {
                 midClicksArray[index] = randomNumber();
+                console.log('mid index = one of previouse array')
             }
-        }
+        }*/
     }
-  /*  var check = []
-for (let index = 1; index < rightClicksArray.length; index++) {
+  /* var check = []
+for (let index = 0; index < rightClicksArray.length; index++) {
    var check1 = leftClicksArray[index] - leftClicksArray[index-1]
+   if (check1 != 0) {
+    console.log('great coding')
+}else {
+    randomNumber()
+    console.log('wrong coding')
+}
    var check2 = leftClicksArray[index] - midClicksArray[index-1]
    var check3 = leftClicksArray[index] - rightClicksArray[index-1]
    
