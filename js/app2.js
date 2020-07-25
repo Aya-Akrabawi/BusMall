@@ -94,11 +94,9 @@ for (let index = 1; index < rightClicksArray.length; index++) {
    check.push(check8)
    check.push(check9)
 
-   ////console.log(check)
-}
+   }
 if (check != 0) {
-    //console.log('great coding')
-}
+    }
 */
 
     var leftsrc = collections[leftindex].path;
@@ -152,27 +150,16 @@ function finalMassege() {
 }
 
 function storeProducts(){
-    //in order to save our array of objects into the localstorage we
-     //will need to formate our json object in json string
-    var jsonStringProducts = JSON.stringify(collections);
-    // creare a new property in our localstorage 
-    localStorage.setItem('savedProducts',jsonStringProducts);
+             var jsonStringProducts = JSON.stringify(collections);
+        localStorage.setItem('savedProducts',jsonStringProducts);
   }
-  //console.log('before updatig');
-  //console.table(collections);
-  parseLocalStorage();
-  //console.log('after updating');
-  //console.table(collections);
-  // this function is responsible for parsing the json string to json object 
-  function parseLocalStorage(){
+      parseLocalStorage();
+        function parseLocalStorage(){
     var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
-    ////console.log(previousProductsArr);
-    // this funtcion will update the newly created objects with the old literation values
-    update(previousProductsArr);
+            update(previousProductsArr);
   
   }
-  //console.table(collections)
-
+  
   function update(previousProductsArr){
     for (let index = 0; index < collections.length; index++) {
       collections[index].clicks = previousProductsArr[index].clicks;
@@ -180,9 +167,7 @@ function storeProducts(){
       collections[index].viewed = previousProductsArr[index].viewed;
       
     }
-    ////console.log(previousProductsArr)
-     //// console.table(collections)
-  }
+           }
 
 
 function clicksAndViewsForChartsFunc (){
@@ -191,8 +176,7 @@ function clicksAndViewsForChartsFunc (){
     for (let index = 0; index < collections.length; index++) {
      pushedClicks.push(collections[index].clicks)
      pushedViews.push(collections[index].viewed) 
-     //console.log(pushedClicks)
-
+     
 }}
 
 function chartFunc() {
@@ -282,5 +266,4 @@ function chartFunc() {
     });
 }
 
-//here
-//console.table(collections)
+//Done by Aya
