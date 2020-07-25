@@ -10,6 +10,7 @@ var rightImg = document.getElementById('rightImg')
 
 //constructor:
 var collections = []
+var numberOfClicks = []
 var productsName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
 function Product(name, path) {
     this.name = name
@@ -73,7 +74,7 @@ function randomImg() {
     collections[leftIndex].numberOfTimesShown += 1;
     collections[midIndex].numberOfTimesShown += 1;
     collections[rightIndex].numberOfTimesShown += 1;
-console.log(  'shown'+  collections[rightIndex].numberOfTimesShown    )
+//console.log(  'shown'+  collections[rightIndex].numberOfTimesShown    )
     leftImg.setAttribute('src', leftImgsrc)
     midImg.setAttribute('src', midImgsrc)
     rightImg.setAttribute('src', rightImgsrc)
@@ -100,7 +101,7 @@ function clickFnc() {
             if (clickedElementId === 'leftImg') {
             
                 collections[leftIndex].numberOfClicks += 1;
-                console.log(collections[leftIndex].numberOfClicks)
+               // console.log(collections[leftIndex].numberOfClicks)
 
             }
             if (clickedElementId === 'midtImg') {
@@ -114,7 +115,9 @@ function clickFnc() {
             randomImg();
         } else {
             generateUserMessage();
+            storeProducts();
             imgSection.removeEventListener('click', clickFnc);
+            //console.table(localStorage)
         }
     }
 
@@ -128,48 +131,57 @@ function generateUserMessage() {
 
 
 }
-console.table(collections)
+//console.table(collections)
+
+
+
+
+
+
+
+// function storeProducts(){
+//     //in order to save our array of objects into the localstorage we
+//      //will need to formate our json object in json string
+//     var jsonStringProducts = JSON.stringify(collections);
+//     // creare a new property in our localstorage 
+//     localStorage.setItem('savedProducts',jsonStringProducts);
+//   }
+//   console.log('before updatig');
+//   console.table(collections);
+//   parseLocalStorage();
+//   console.log('after updating');
+//   console.table(collections);
+//   // this function is responsible for parsing the json string to json object 
+//   function parseLocalStorage(){
+//     var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
+//     console.log(previousProductsArr);
+//     // this funtcion will update the newly created objects with the old literation values
+//     update(previousProductsArr);
+  
+//   }
+  
+//   function update(previousProductsArr){
+//     for (let index = 0; index < collections.length; index++) {
+//       collections[index].numberOfClicks = previousProductsArr[index].numberOfClicks;
+//       collections[index].numberOfTimesShown = previousProductsArr[index].numberOfTimesShown;
+      
+//     }
+//   }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //comment
-/*function chartFunc() {
-    
-
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: productsName,
-            datasets: [{
-                label: '# of clicks for each product',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-}
-chartFunc()*/
