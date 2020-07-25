@@ -12,8 +12,8 @@ var rightindex;
 var leftindex;
 var midindex;
 var prevClicksArray = []
-var pushedClicks 
-var pushedViews 
+var pushedClicks = []
+var pushedViews = []
 
 
 var productsName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']
@@ -48,67 +48,41 @@ function randomImageFunc() {
     while (rightindex === leftindex || rightindex === midindex) {
         rightindex = randomNumber();
     }
+    for (let index = 0; index < prevClicksArray.length; index++) {
+        if (leftindex === prevClicksArray[index]) {
+            leftindex = randomNumber()
+            while (leftindex === midindex || leftindex === rightindex) {
+                leftindex = randomNumber();
+            }
+            while (rightindex === leftindex || rightindex === midindex) {
+                rightindex = randomNumber();
+            }
+        }
+        if (midindex === prevClicksArray[index]) {
+            midindex = randomNumber()
+            while (leftindex === midindex || leftindex === rightindex) {
+                leftindex = randomNumber();
+            }
+            while (rightindex === leftindex || rightindex === midindex) {
+                rightindex = randomNumber();
+            }
+        }
+        if (rightindex === prevClicksArray[index]) {
+            rightindex = randomNumber()
+            while (leftindex === midindex || leftindex === rightindex) {
+                leftindex = randomNumber();
+            }
+            while (rightindex === leftindex || rightindex === midindex) {
+                rightindex = randomNumber();
+            }
+        }
+
+    }
 
     prevClicksArray[0] = leftindex
     prevClicksArray[1] = midindex
     prevClicksArray[2] = rightindex
-   
 
-
-/*    for (let index = 0; index < rightClicksArray.length; index++) {
-        while (leftClicksArray[index] === midClicksArray[index - 1] || leftClicksArray[index] === rightClicksArray[index - 1] || leftClicksArray[index] === leftClicksArray[index - 1]) {
-            leftClicksArray[index] = randomNumber();
-            console.log('left index = one of previouse array')
-        }
-
-        for (let index = 0; index < rightClicksArray.length; index++) {
-            while (rightClicksArray[index] === leftClicksArray[index - 1] || rightClicksArray[index] === midClicksArray[index - 1] || rightClicksArray[index] === rightClicksArray[index - 1]) {
-                rightClicksArray[index] = randomNumber();
-                console.log('right index = one of previouse array')
-            }
-        }
-        for (let index = 0; index < rightClicksArray.length; index++) {
-            while (midClicksArray[index] === midClicksArray[index - 1] || midClicksArray[index] === rightClicksArray[index - 1] || midClicksArray[index] === leftClicksArray[index - 1]) {
-                midClicksArray[index] = randomNumber();
-                console.log('mid index = one of previouse array')
-            }
-        }*/
-    }
-  /* var check = []
-for (let index = 0; index < rightClicksArray.length; index++) {
-   var check1 = leftClicksArray[index] - leftClicksArray[index-1]
-   if (check1 != 0) {
-    console.log('great coding')
-}else {
-    randomNumber()
-    console.log('wrong coding')
-}
-   var check2 = leftClicksArray[index] - midClicksArray[index-1]
-   var check3 = leftClicksArray[index] - rightClicksArray[index-1]
-   
-   var check4 = midClicksArray[index] - leftClicksArray[index-1]
-   var check5 = midClicksArray[index] - midClicksArray[index-1]
-   var check6 = midClicksArray[index] - rightClicksArray[index-1]
-
-   var check7 = rightClicksArray[index] - leftClicksArray[index-1]
-   var check8 = rightClicksArray[index] - midClicksArray[index-1]
-   var check9 = rightClicksArray[index] - rightClicksArray[index-1]
-   check.push(check1)
-   check.push(check2)
-   check.push(check3)
-   check.push(check4)
-   check.push(check5)
-   check.push(check6)
-   check.push(check7)
-   check.push(check8)
-   check.push(check9)
-
-   //console.log(check)
-}
-if (check != 0) {
-    console.log('great coding')
-}
-*/
 
     var leftsrc = collections[leftindex].path;
     var midsrc = collections[midindex].path;
@@ -119,7 +93,12 @@ if (check != 0) {
     leftImg.setAttribute('src', leftsrc);
     midImg.setAttribute('src', midsrc);
     rightImg.setAttribute('src', rightsrc);
+    
 }
+
+
+
+
 imageSec.addEventListener('click', clicksNumber);
 function clicksNumber() {
     if (O < 24) {
@@ -138,11 +117,12 @@ function clicksNumber() {
             collections[rightindex].clicks += 1;
         }
         randomImageFunc();
-       
+
     }
     else {
         finalMassege();
-        clicksAndViewsForChartsFunc();
+        storeProducts()
+      clicksAndViewsForChartsFunc();
         chartFunc();
         imageSec.removeEventListener('click', clicksNumber);
     }
@@ -154,21 +134,50 @@ function finalMassege() {
         votes.appendChild(list)
 
         list.textContent = collections[index].name + ' had ' + collections[index].clicks + ' votes and was shown ' + collections[index].viewed + ' times '
-    
+
     }
 
 }
 
-
-/*function clicksAndViewsForChartsFunc (){
-    pushedClicks = []
-         pushedViews = []
+function clicksAndViewsForChartsFunc (){
     for (let index = 0; index < collections.length; index++) {
      pushedClicks.push(collections[index].clicks)
      pushedViews.push(collections[index].viewed) 
-     console.log(pushedClicks)
 
-}}*/
+}}
+function storeProducts(){
+    //in order to save our array of objects into the localstorage we
+     //will need to formate our json object in json string
+    var jsonStringProducts = JSON.stringify(collections);
+    // creare a new property in our localstorage 
+    localStorage.setItem('savedProducts',jsonStringProducts);
+  }
+  console.log('before updatig');
+  console.table(collections);
+  parseLocalStorage();
+  console.log('after updating');
+  console.table(collections);
+  // this function is responsible for parsing the json string to json object 
+  function parseLocalStorage(){
+    var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
+    //console.log(previousProductsArr);
+    // this funtcion will update the newly created objects with the old literation values
+    update(previousProductsArr);
+  
+  }
+
+  function update(previousProductsArr){
+    for (let index = 0; index < collections.length; index++) {
+      collections[index].clicks = previousProductsArr[index].clicks;
+      
+      collections[index].viewed = previousProductsArr[index].viewed;
+      
+    }
+    //console.log(previousProductsArr)
+     // console.table(collections)
+  }
+
+
 
 function chartFunc() {
 
@@ -180,7 +189,7 @@ function chartFunc() {
             labels: productsName,
             datasets: [{
                 label: '# of clicks for each product',
-                 data: pushedClicks,
+                data: pushedClicks,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -210,10 +219,10 @@ function chartFunc() {
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
-            }, 
+            },
             {
                 label: '# of views for each product',
-                 data: pushedViews,
+                data: pushedViews,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
