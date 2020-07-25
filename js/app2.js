@@ -158,11 +158,11 @@ function storeProducts(){
     // creare a new property in our localstorage 
     localStorage.setItem('savedProducts',jsonStringProducts);
   }
-  //console.log('before updatig');
-  //console.table(collections);
+  console.log('before updatig');
+  console.table(collections);
   parseLocalStorage();
-  //console.log('after updating');
-  //console.table(collections);
+  console.log('after updating');
+  console.table(collections);
   // this function is responsible for parsing the json string to json object 
   function parseLocalStorage(){
     var previousProductsArr =JSON.parse(localStorage.getItem('savedProducts'))
